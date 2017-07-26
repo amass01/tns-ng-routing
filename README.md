@@ -201,8 +201,16 @@ You can use Angular’s [route guards](https://angular.io/docs/ts/latest/guide/r
 
 There is a difference in the component lifecycle when using **page-router-outlet** and **router-outlet**.
 
-With <router-outlet> new instance of the component is created with each navigation and is destroyed when you navigate to another component. The component's constructor and its init hooks will be called every time you navigate to the component and ngOnDestroy() will be called every time you navigate away from it.
+With **router-outlet** new instance of the component is created with each navigation and is destroyed when you navigate to another component. The component's constructor and its **init** hooks will be called every time you navigate to the component and **ngOnDestroy()** will be called every time you navigate away from it.
 
-With <page-router-outlet> when you navigate forward, the current page and views are saved in the native navigation stack. The corresponding component is not destroyed. It is cached, so that it can be shown when you go back to the same page. It will still be connected to the views that were cached natively.
+With **page-router-outlet** when you navigate **forward**, the current page and views are saved in the native navigation stack. The corresponding component is **not** destroyed. It is cached, so that it can be shown when you go back to the same page. It will still be connected to the views that were cached natively.
+
+### Passing Parameter
+
+In Angular you can inject **ActivatedRoute** and read route parameters from it. Your component will be reused if you do a subsequent navigations to the same route while only changing the params. That's why **params** and **data** inside **ActivatedRoute** are observables. Using **ActivatedRoute** is covered in [angular route-parameters guide](https://angular.io/docs/ts/latest/guide/router.html#!#route-parameters).
+
+As explained in previous chapter, with **page-router-outlet** when navigating **back** to an existing page, your component will **not** be re-created. Angular router will still create an **new instance ActivatedRoute** and put all params in it, but you cannot get hold of it through injection, as your component is revived from the cache and not constructed anew.
+
+**The Solution:** In NativeScript you can inject **PageRoute** which has an **activatedRoute: Observable<ActivatedRoute>** field inside it. Each time a new **ActivatedRoute** instance is created for this reused component it will be pushed in this observable, so you can still get your params
 
 
