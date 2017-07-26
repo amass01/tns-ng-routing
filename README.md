@@ -114,7 +114,7 @@ This means that any content outside the **page-router-outlet** will not be inclu
 
 Note that we can now use the **Back** button and the **NavigationBar** to navigate.
 
-It is possible to nest ** <router-outlet> ** component inside ** <page-router-outlet> ** or another **<router-outlet>**.
+It is possible to nest <router-outlet> component inside <page-router-outlet> or another <router-outlet>.
 
 ### Navigation Options
 
