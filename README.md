@@ -63,7 +63,8 @@ In NativeScript you have a choice between two router outlets:
 })
 ```
 
-One thing you might have noticed in the code above is the **nsRouterLink** directive. It is similar to routerLink, but works with NativeScript navigation. To use it, you need to import NativeScriptRouterModule in your NgModule.
+One thing you might have noticed in the code above is the **nsRouterLink** directive. It is similar to routerLink, but works with NativeScript navigation.
+To use it, you need to import **NativeScriptRouterModule** in your NgModule.
 
 ### Router Outlet
 
@@ -77,12 +78,39 @@ template: `
                     [nsRouterLink]="['/second']"></Button>
             </StackLayout>
 
-            **<router-outlet></router-outlet>**
+            <router-outlet></router-outlet>
         </StackLayout>
     `
 ```
 
-The result is that with each navigation the content of the **router-outlet** is replaced with the new component
+The result is that with each navigation the content of the **router-outlet** is replaced with the new component.
+
+### Page Router Outlet
+
+```
+@Component({
+    selector: "page-navigation-test",
+    template: `<page-router-outlet></page-router-outlet>`
+})
+export class PageNavigationApp {
+}
+
+@NgModule({
+    declarations: [PageNavigationApp, FirstComponent, SecondComponent],
+    bootstrap: [PageNavigationApp],
+    imports: [
+        NativeScriptModule,
+        NativeScriptRouterModule,
+        NativeScriptRouterModule.forRoot(routes)
+    ]
+})
+export class PageNavigationAppModule { }
+
+platformNativeScriptDynamic().bootstrapModule(PageNavigationAppModule);
+```
+
+The main difference here is that when navigating - the new component will be loaded as a root view in a **new Page**.
+This means that any content outside the **page-router-outlet** will not be included in the new page. This is the reason why the **page-router-outlet** is usually the single root element in the application component.
 
 
 
