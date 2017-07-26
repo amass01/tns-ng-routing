@@ -195,6 +195,6 @@ flipToNextPage() {
 
 ### Route Guards
 
-You can use Angular’s (route guards)[https://angular.io/docs/ts/latest/guide/router.html#!#guards] for even more control over the navigation.
+You can use Angular’s [route guards](https://angular.io/docs/ts/latest/guide/router.html#!#guards) for even more control over the navigation.
 
 
