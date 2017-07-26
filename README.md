@@ -77,7 +77,7 @@ template: `
                     [nsRouterLink]="['/second']"></Button>
             </StackLayout>
 
-            <router-outlet></router-outlet>
+            **<router-outlet></router-outlet>**
         </StackLayout>
     `
 ```
