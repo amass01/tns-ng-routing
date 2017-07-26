@@ -112,5 +112,47 @@ platformNativeScriptDynamic().bootstrapModule(PageNavigationAppModule);
 The main difference here is that when navigating - the new component will be loaded as a root view in a **new Page**.
 This means that any content outside the **page-router-outlet** will not be included in the new page. This is the reason why the **page-router-outlet** is usually the single root element in the application component.
 
+Note that we can now use the **Back** button and the **NavigationBar** to navigate.
+
+It is possible to nest **<router-outlet>** component inside **<page-router-outlet>** or another **<router-outlet>**.
+
+### Navigation Options
+
+You can define the trigger in your application declaratively - using the **nsRouterLink** directive in your markup. Or you can do it through code - by injecting the **RouterExtensions** class and using its methods:
+
+```
+@Component({
+    // ...
+})
+export class MainComponent {
+    constructor(private routerExtensions: RouterExtensions) {
+        // ...
+    }
+}
+```
+
+#### Navigating Back
+
+You can navigate back using **back()** method of the **RouterExtensions**
+
+```
+public goBack() {
+    this.routerExtensions.back();
+}
+```
+
+You can also navigate back to the previous page with **backToPreviousPage**():
+
+```
+public goBackPage() {
+    this.routerExtensions.backToPreviousPage();
+}
+```
+
+The difference between the two methods is visible when there are nested(child) router-outlet(s) inside the current page:
+
+* **back()** - goes back to the previous router location even if the navigation occurred inside the child router outlet on the current page.
+* **backToPreviousPage()** - goes back to the previous page. The method skips all child router-outlet navigations inside the current page and goes directly to the previous one.
+
 
 
