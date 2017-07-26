@@ -171,5 +171,30 @@ login() {
 }
 ```
 
+### Specifying Page Transitions
+
+By default, all navigation will be animated and will use the default transition for the respective platform (UINavigationController transitions for iOS and Fragment transitions for Android).
+To change the transition type, set the **pageTransition** attribute on your **nsRouterLink** tag in the markup:
+```
+<Button text="flip to next" [nsRouterLink]="['/main']" pageTransition="flip"></Button>
+<Button text="no transition" [nsRouterLink]="['/main']" pageTransition="none"></Button>
+```
+
+You can also do this through code using the **RouterExtensions** class:
+```
+flipToNextPage() {
+    this.routerExtensions.navigate(["/main"], {
+        transition: {
+            name: "flip",
+            duration: 2000,
+            curve: "linear"
+        }
+    });
+}
+```
+
+### Route Guards
+
+You can use Angular’s (route guards)[https://angular.io/docs/ts/latest/guide/router.html#!#guards] for even more control over the navigation.
 
 
