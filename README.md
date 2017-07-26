@@ -4,6 +4,20 @@
 
 In an Angular application navigation is done using the **Angular Component Router**.
 
+### Topics:
+
+* Router Configuration
+* Pages
+* Router Links
+* Router Outlet
+* Page Router Outlet
+* Navigation Options
+* Clearing Page Navigation History
+* Specifying Page Transitions
+* Route Guards
+* Lifecycle Hooks And Component Caching
+* Passing Parameter
+
 
 ### Configuration
 
