@@ -197,4 +197,12 @@ flipToNextPage() {
 
 You can use Angular’s [route guards](https://angular.io/docs/ts/latest/guide/router.html#!#guards) for even more control over the navigation.
 
+### Lifecycle Hooks And Component Caching
+
+There is a difference in the component lifecycle when using **page-router-outlet** and **router-outlet**.
+
+With <router-outlet> new instance of the component is created with each navigation and is destroyed when you navigate to another component. The component's constructor and its init hooks will be called every time you navigate to the component and ngOnDestroy() will be called every time you navigate away from it.
+
+With <page-router-outlet> when you navigate forward, the current page and views are saved in the native navigation stack. The corresponding component is not destroyed. It is cached, so that it can be shown when you go back to the same page. It will still be connected to the views that were cached natively.
+
 
