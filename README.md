@@ -154,5 +154,22 @@ The difference between the two methods is visible when there are nested(child) r
 * **back()** - goes back to the previous router location even if the navigation occurred inside the child router outlet on the current page.
 * **backToPreviousPage()** - goes back to the previous page. The method skips all child router-outlet navigations inside the current page and goes directly to the previous one.
 
+### Clearing Page Navigation History
+
+In NativeScript's page navigation, you have the option to navigate to another page and clear the page navigation history. This means that the user will not be able to go back using the back button (or swipe back in iOS). This is useful in scenarios where you have a login page and you don't want users to be able go go back to it once logged in.
+
+You can specify **clearHistory** as an attribute on your **nsRouterLink** tag in the markup:
+```
+<Button text="login" [nsRouterLink]="['/main']" clearHistory="true"></Button>
+```
+
+Or you can use **RouterExtensions** class:
+```
+login() {
+    // app logic here ...
+    this.routerExtensions.navigate(["/main"], { clearHistory: true });
+}
+```
+
 
 
